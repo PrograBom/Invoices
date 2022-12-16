@@ -7,7 +7,7 @@ namespace Invoices.Model
         public int Id { get; set; }
         public string Name { get; set; }
         public float Price { get; set; }
-        public int ClientId { get; set; }
-        public virtual Client Client { get; set; }
+        public int InvoiceId { get; set; }
+        public virtual Invoice Invoice { get; set; }
     }
 }
