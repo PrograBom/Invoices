@@ -2,14 +2,14 @@
 
 namespace Invoices.Model;
 
-public class LibraryDbContext : DbContext
+public class InvoiceDbContext : DbContext
 {
     //pre istotu bezparametrový aj parametrový konštruktor
-    public LibraryDbContext()
+    public InvoiceDbContext()
     {
 
     }
-    public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options) { }
+    public InvoiceDbContext(DbContextOptions<InvoiceDbContext> options) : base(options) { }
 
     //každá trieda má zápis v DbContext na tvorbu tabuľky
     public DbSet<Client> Client { get; set; }
