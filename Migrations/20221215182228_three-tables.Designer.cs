@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Invoices.Migrations
 {
-    [DbContext(typeof(LibraryDbContext))]
+    [DbContext(typeof(InvoiceDbContext))]
     [Migration("20221215182228_three-tables")]
     partial class threetables
     {

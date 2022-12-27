@@ -2,14 +2,14 @@
 
 namespace Invoices.Model;
 
-public class LibraryDbContext : DbContext
+public class InvoiceDbContext : DbContext
 {
     //pre istotu bezparametrový aj parametrový konštruktor
-    public LibraryDbContext()
+    public InvoiceDbContext()
     {
 
     }
-    public LibraryDbContext(DbContextOptions<LibraryDbContext> options) : base(options) { }
+    public InvoiceDbContext(DbContextOptions<InvoiceDbContext> options) : base(options) { }
 
     //každá trieda má zápis v DbContext na tvorbu tabuľky
     public DbSet<Client> Client { get; set; }
@@ -22,6 +22,6 @@ public class LibraryDbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         //môžem vytvoriť tabuľku s požadovaným typom stĺpca
-        modelBuilder.Entity<Invoice>(e => e.Property(o => o.IssueDate).HasColumnType("DATE")
+        modelBuilder.Entity<Invoice>(e => e.Property(o => o.IssueDate).HasColumnType("DATE"));
     }
 }
