@@ -1,4 +1,5 @@
 ﻿using Invoices.Model;
+using Invoices.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -10,20 +11,18 @@ namespace Invoices.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-        private readonly InvoiceDbContext _dbContext;
+        private readonly IClientService _clientService;
 
-        public ClientController(InvoiceDbContext dbContext)
+        public ClientController(IClientService clientService)
         {
-            this._dbContext = dbContext;
+            this._clientService = clientService;
         }
-
-
 
         // GET: api/<ClientController>
         [HttpGet("GetAll")]
         public async Task<List<Client>> GetAll()
         {
-            return await this._dbContext.Client.ToListAsync();
+            return await this._clientService.GetAll();
         }
 
         // GET api/<ClientController>/5

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Invoices.Migrations
 {
-    [DbContext(typeof(InvoiceDbContext))]
+    [DbContext(typeof(IClientService))]
     [Migration("20221215094645_1 migration")]
     partial class _1migration
     {
