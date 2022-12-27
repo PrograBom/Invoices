@@ -1,4 +1,7 @@
-﻿using Invoices.Model;
+﻿using AutoMapper;
+using Invoices.Handler;
+using Invoices.Model;
+using Invoices.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace Invoices
@@ -16,7 +19,11 @@ namespace Invoices
             services.AddControllers();
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+            services.AddTransient<IClientService, ClientService>();
             services.AddDbContext<InvoiceDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+            var automapper = new MapperConfiguration(item => item.AddProfile(new MappingProfile()));
+            IMapper mapper = automapper.CreateMapper();
+            services.AddSingleton(mapper);
         }
         public void Configure(IApplicationBuilder app)
         {

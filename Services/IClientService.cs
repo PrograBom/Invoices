@@ -1,9 +1,9 @@
-﻿using Invoices.Model;
+﻿using Invoices.Dtos;
 
 namespace Invoices.Services
 {
     public interface IClientService
     {
-        Task<List<Client>> GetAll();
+        Task<List<ClientDto>> GetAll();
     }
 }

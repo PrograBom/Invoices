@@ -1,4 +1,5 @@
-﻿using Invoices.Model;
+﻿using Invoices.Dtos;
+using Invoices.Model;
 using Invoices.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,7 @@ namespace Invoices.Controllers
 
         // GET: api/<ClientController>
         [HttpGet("GetAll")]
-        public async Task<List<Client>> GetAll()
+        public async Task<List<ClientDto>> GetAll()
         {
             return await this._clientService.GetAll();
         }
