@@ -22,6 +22,6 @@ public class InvoiceDbContext : DbContext
         base.OnModelCreating(modelBuilder);
 
         //môžem vytvoriť tabuľku s požadovaným typom stĺpca
-        modelBuilder.Entity<Invoice>(e => e.Property(o => o.IssueDate).HasColumnType("DATE")
+        modelBuilder.Entity<Invoice>(e => e.Property(o => o.IssueDate).HasColumnType("DATE"));
     }
 }
