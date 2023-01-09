@@ -1,3 +1,5 @@
+using Invoices.Dtos;
+using Invoices.Services;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Invoices.Controllers
@@ -6,28 +8,19 @@ namespace Invoices.Controllers
     [Route("[controller]")]
     public class InvoiceController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
         private readonly ILogger<InvoiceController> _logger;
+        private readonly IInvoiceService _invoiceService;
 
-        public InvoiceController(ILogger<InvoiceController> logger)
+        public InvoiceController(ILogger<InvoiceController> logger, IInvoiceService invoiceService)
         {
             _logger = logger;
+            _invoiceService = invoiceService;
         }
 
-        [HttpGet(Name = "GetWeatherForecast")]
-        public IEnumerable<WeatherForecast> Get()
+        [HttpGet]
+        public async Task<List<InvoiceDto>> GetAllInvoices()
         {
-            return Enumerable.Range(1, 5).Select(index => new WeatherForecast
-            {
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = Random.Shared.Next(-20, 55),
-                Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-            })
-            .ToArray();
+            return await this._invoiceService.GetAllInvoices();
         }
     }
 }
