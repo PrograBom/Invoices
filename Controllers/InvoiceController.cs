@@ -18,15 +18,21 @@ namespace Invoices.Controllers
         }
 
         [HttpGet]
-        public async Task<List<InvoiceDto>> GetAllInvoices()
+        public async Task<List<InvoiceResponseDto>> GetAllInvoices()
         {
             return await this._invoiceService.GetAllInvoices();
         }
 
         [HttpGet("{id}")]
-        public async Task<InvoiceDto> GetInvoiceById(string id)
+        public async Task<InvoiceResponseDto> GetInvoiceById(string id)
         {
             return await this._invoiceService.GetInvoiceById(id);
+        }
+
+        [HttpPost]
+        public async Task<InvoiceResponseDto> CreateInvoice([FromBody] CreateInvoiceDto newClient)
+        {
+            return await this._invoiceService.CreateInvoice(newClient);
         }
     }
 }
