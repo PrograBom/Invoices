@@ -59,7 +59,7 @@ public class ClientService : IClientService
         return new List<ClientDto>();
     }
 
-    public async Task<ClientDto> GetById(string id)
+    public async Task<ClientDto> GetClientById(string id)
     {
         var customerData = await this._dbContext.Client.FirstOrDefaultAsync(item => item.ClientId.Equals(id));
         if(customerData != null)

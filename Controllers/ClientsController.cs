@@ -28,9 +28,9 @@ namespace Invoices.Controllers
 
         // GET api/<ClientController>/5
         [HttpGet("{id}")]
-        public async Task<ClientDto> GetById(string id)
+        public async Task<ClientDto> GetClientById(string id)
         {
-            return await this._clientService.GetById(id);
+            return await this._clientService.GetClientById(id);
         }
 
         // POST api/<ClientController>

@@ -5,7 +5,7 @@ namespace Invoices.Services
     public interface IInvoiceService
     {
         Task<List<InvoiceDto>> GetAllInvoices();
-        Task<InvoiceDto> GetInvoiceById(int id);
+        Task<InvoiceDto> GetInvoiceById(string id);
 
     }
 }

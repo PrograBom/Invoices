@@ -29,8 +29,13 @@ public class InvoiceService : IInvoiceService
         return new List<InvoiceDto>();
     }
 
-    Task<InvoiceDto> IInvoiceService.GetInvoiceById(int id)
+    public async Task<InvoiceDto> GetInvoiceById(string id)
     {
-        throw new NotImplementedException();
+        var invoiceData = await this._dbContext.Invoice.FirstOrDefaultAsync(item => item.Id.Equals(id));
+        if (invoiceData != null)
+        {
+            return this.mapper.Map<Client, ClientDto>(invoiceData);
+        }
+        return new InvoiceDto();
     }
 }

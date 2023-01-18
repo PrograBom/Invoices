@@ -22,5 +22,11 @@ namespace Invoices.Controllers
         {
             return await this._invoiceService.GetAllInvoices();
         }
+
+        [HttpGet("{id}")]
+        public async Task<InvoiceDto> GetInvoiceById(string id)
+        {
+            return await this._invoiceService.GetInvoiceById(id);
+        }
     }
 }
