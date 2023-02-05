@@ -52,7 +52,7 @@ public class ClientService : IClientService
     public async Task<List<ClientDto>> GetAllClients()
     {
         var clientData = await this._dbContext.Client.ToListAsync();
-        if(clientData != null && clientData.Count >= 0) {
+        if(clientData.Count >= 0) {
             // automaper
             return this.mapper.Map<List<Client>, List<ClientDto>>(clientData);
         }

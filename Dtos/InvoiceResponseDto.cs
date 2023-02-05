@@ -8,7 +8,7 @@ namespace Invoices.Dtos
         public DateOnly IssueDate { get; set; }
         public DateOnly DeliveryDate { get; set; }
         public DateOnly DueDate { get; set; }
-        public ICollection<Items> Items { get; set; }
+        public ICollection<InvoiceItem> Items { get; set; }
         public int ClientId { get; set; }
         public Client Client { get; set; }
     }

@@ -4,6 +4,8 @@ namespace Invoices.Dtos
 {
     public class ClientCreateDto
     {
+        [Required]
+        [StringLength(8)]
         public string ClientId { get; set; }
         public int TaxId { get; set; }
         public int VatId { get; set; }

@@ -13,7 +13,8 @@ public class InvoiceDbContext : DbContext
 
     //každá trieda má zápis v DbContext na tvorbu tabuľky
     public DbSet<Client> Client { get; set; }
-    public DbSet<Items> Items { get; set; }
+    public DbSet<InvoiceItem> InvoiceItem { get; set; }
+    public DbSet<Item> Item { get; set; }
     public DbSet<Invoice> Invoice { get; set; }
 
     //podmienky pre tvorbu tabuľky

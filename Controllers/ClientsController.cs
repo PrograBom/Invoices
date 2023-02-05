@@ -21,28 +21,33 @@ namespace Invoices.Controllers
 
         // GET: api/<ClientController>
         [HttpGet]
-        public async Task<List<ClientDto>> GetAllClients()
+        public async Task<List<ClientDto>> GetAllClientsAsync()
         {
             return await this._clientService.GetAllClients();
         }
 
         // GET api/<ClientController>/5
         [HttpGet("{id}")]
-        public async Task<ClientDto> GetClientById(string id)
+        public async Task<ClientDto> GetClientByIdAsync(string id)
         {
             return await this._clientService.GetClientById(id);
         }
 
         // POST api/<ClientController>
         [HttpPost]
-        public async void Post([FromBody] ClientCreateDto newClient)
+        public async Task<ActionResult> CreateClientAsync([FromBody] ClientCreateDto newClient)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
             await this._clientService.CreateClient(newClient);
+            return null;
         }
 
         // PUT api/<ClientController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void ChangeClient(int id, [FromBody] string value)
         {
         }
 
