@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Invoices.Handler;
+using Invoices.Infrastructure;
 using Invoices.Model;
 using Invoices.Services;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,11 @@ namespace Invoices
             var automapper = new MapperConfiguration(item => item.AddProfile(new MappingProfile()));
             IMapper mapper = automapper.CreateMapper();
             services.AddSingleton(mapper);
+            //pridanie filtra
+            services.AddControllers(options =>
+            {
+                options.Filters.Add(new ApiExceptionFiltersAttribute());
+            });
         }
         public void Configure(IApplicationBuilder app)
         {
