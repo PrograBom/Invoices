@@ -6,24 +6,25 @@ namespace Invoices.Services;
 
 public class InvoiceService : IInvoiceService
 {
-    private readonly InvoiceDbContext _dbContext;
+    private readonly ApplicationDbContext _dbContext;
 
-    public InvoiceService(InvoiceDbContext dbContext)
+    public InvoiceService(ApplicationDbContext dbContext)
     {
         _dbContext = dbContext;
     }
 
-    public async Task<List<InvoiceDto>> IInvoiceService.GetAllInvoices()
+    public Task<List<InvoiceDto>> GetAllInvoices()
     {
-        var invoiceData = await this._dbContext.Invoice.ToListAsync;
+        return null;
+        //var invoices =  await _dbContext.Invoices.ToListAsync;
 
 
-        if (invoiceData != null && invoiceData.Count >= 0)
-        {
-            // automaper
-            return this.mapper.Map<List<Client>, List<ClientDto>>(invoiceData);
-        }
-        return new List<InvoiceDto>();
+        //if (invoiceData != null && invoiceData.Count >= 0)
+        //{
+        //    // automaper
+        //    return this.mapper.Map<List<Client>, List<ClientDto>>(invoiceData);
+        //}
+        //return new List<InvoiceDto>();
     }
 
     Task<InvoiceDto> IInvoiceService.GetInvoiceById(int id)
