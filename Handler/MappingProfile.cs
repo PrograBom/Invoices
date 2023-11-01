@@ -6,6 +6,6 @@ using Invoices.Model;
 public class MappingProfile : Profile
 {
     public MappingProfile() {
-        CreateMap<Client, ClientDto>();
+        CreateMap<User, ClientDto>();
     }
 }

@@ -2,19 +2,22 @@
 
 namespace Invoices.Model;
 
-public class InvoiceDbContext : DbContext
+public class ApplicationDbContext : DbContext
 {
     //pre istotu bezparametrový aj parametrový konštruktor
-    public InvoiceDbContext()
+    public ApplicationDbContext()
     {
 
     }
-    public InvoiceDbContext(DbContextOptions<InvoiceDbContext> options) : base(options) { }
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
     //každá trieda má zápis v DbContext na tvorbu tabuľky
-    public DbSet<Client> Client { get; set; }
-    public DbSet<Items> Items { get; set; }
-    public DbSet<Invoice> Invoice { get; set; }
+    public DbSet<Item> Items { get; set; }
+    public DbSet<Invoice> Invoices { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<Product> Products { get; set; }
+    public DbSet<ClientDetails> ClientDetails { get; set; }
+
 
     //podmienky pre tvorbu tabuľky
     protected override void OnModelCreating(ModelBuilder modelBuilder)

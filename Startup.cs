@@ -20,7 +20,7 @@ namespace Invoices
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
             services.AddTransient<IClientService, ClientService>();
-            services.AddDbContext<InvoiceDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)),
+            services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)),
             ServiceLifetime.Transient);
             var automapper = new MapperConfiguration(item => item.AddProfile(new MappingProfile()));
             IMapper mapper = automapper.CreateMapper();
