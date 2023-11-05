@@ -1,11 +1,14 @@
-﻿namespace Invoices.Handler;
-
-using AutoMapper;
+﻿using AutoMapper;
 using Invoices.Dtos;
 using Invoices.Model;
-public class MappingProfile : Profile
+
+namespace Invoices.Handler
 {
-    public MappingProfile() {
-        CreateMap<User, ClientDto>();
+    public class MappingProfile : Profile
+    {
+        public MappingProfile()
+        {
+            CreateMap<User, ClientDto>();
+        }
     }
 }

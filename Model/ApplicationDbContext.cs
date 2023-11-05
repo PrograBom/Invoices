@@ -16,7 +16,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<Invoice> Invoices { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Product> Products { get; set; }
-    public DbSet<ClientDetails> ClientDetails { get; set; }
+    public DbSet<ClientDetail> ClientDetails { get; set; }
 
 
     //podmienky pre tvorbu tabuľky
@@ -27,4 +27,13 @@ public class ApplicationDbContext : DbContext
         //môžem vytvoriť tabuľku s požadovaným typom stĺpca
         modelBuilder.Entity<Invoice>(e => e.Property(o => o.IssueDate).HasColumnType("DATE"));
     }
+
+    //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //{
+    //    if(!optionsBuilder.IsConfigured)
+    //    {
+    //        optionsBuilder.UseMySql("server=localhost;user=root;database=invoices;password=RootPassword_123", ServerVersion();
+    //    }
+    //    base.OnConfiguring(optionsBuilder);
+    //}
 }

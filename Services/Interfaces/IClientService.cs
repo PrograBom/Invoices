@@ -1,6 +1,6 @@
 ﻿using Invoices.Dtos;
 
-namespace Invoices.Services
+namespace Invoices.Services.Interfaces
 {
     public interface IClientService
     {

@@ -1,7 +1,8 @@
-﻿namespace Invoices.Dtos;
-
-public class ResponseType
+﻿namespace Invoices.Dtos
 {
-    public string Result { get; set; }
-    public string KyValue { get; set; }
+    public class ResponseType
+    {
+        public string Result { get; set; }
+        public string KyValue { get; set; }
+    }
 }

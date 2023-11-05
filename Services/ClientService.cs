@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Invoices.Dtos;
 using Invoices.Model;
+using Invoices.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace Invoices.Services;
@@ -38,15 +39,15 @@ public class ClientService : IClientService
                 };
 
                 // Vytvorte novú inštanciu ClientDetails
-                var newClientDetails = new ClientDetails()
+                var newClientDetail = new ClientDetail()
                 {
-                    Id = Guid.NewGuid().ToString(), // Priraďte nové ID pre ClientDetails (ak je potrebné)
+                    //Id = Guid.NewGuid(), // Priraďte nové ID pre ClientDetails (ak je potrebné)
                     TaxId = newClient.TaxId,
                     VatId = newClient.VatId,
-                    UserId = newUserClient.Id, // Nastavte cizí kľúč na UserId
+                    //UserId = newUserClient.Id, // Nastavte cizí kľúč na UserId
                 };
 
-                newUserClient.ClientDetails = newClientDetails; // Nastavte navigačnú vlastnosť
+                newUserClient.ClientDetail = newClientDetail; // Nastavte navigačnú vlastnosť
 
                 await this._dbContext.Users.AddAsync(newUserClient);
                 this._dbContext.SaveChanges();
@@ -71,7 +72,7 @@ public class ClientService : IClientService
         var customerData = await this._dbContext.ClientDetails.FirstOrDefaultAsync(item => item.Id.Equals(id));
         if(customerData != null)
         {
-            return this.mapper.Map<ClientDetails, ClientDto>(customerData);
+            return this.mapper.Map<ClientDetail, ClientDto>(customerData);
         }
         return new ClientDto();
     }
