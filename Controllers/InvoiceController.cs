@@ -1,5 +1,5 @@
 using Invoices.Dtos;
-using Invoices.Services;
+using Invoices.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Invoices.Controllers

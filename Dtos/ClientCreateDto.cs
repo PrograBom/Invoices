@@ -1,10 +1,8 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Invoices.Dtos
+﻿namespace Invoices.Dtos
 {
     public class ClientCreateDto
     {
-        public string ClientId { get; set; }
+        public int ClientId { get; set; }
         public string TaxId { get; set; }
         public string VatId { get; set; }
         public string Name { get; set; }

@@ -1,6 +1,6 @@
 ﻿using Invoices.Dtos;
 using Invoices.Model;
-using Microsoft.EntityFrameworkCore;
+using Invoices.Services.Interfaces;
 
 namespace Invoices.Services;
 
