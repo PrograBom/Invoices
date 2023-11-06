@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Invoices.Dtos;
 using Invoices.Handler;
 using Invoices.Model;
 using Invoices.Services;
@@ -16,17 +17,26 @@ namespace Invoices
         public IConfigurationRoot Configuration { get; }
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
-            services.AddEndpointsApiExplorer();
-            services.AddSwaggerGen();
-            services.AddTransient<IClientService, ClientService>();
-            var connectionString = Configuration.GetConnectionString("Default");
-            services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
-            var automapper = new MapperConfiguration(item => item.AddProfile(new MappingProfile()));
-            IMapper mapper = automapper.CreateMapper();
-            services.AddSingleton(mapper);
+            try
+            {
+                services.AddControllers();
+                services.AddEndpointsApiExplorer();
+                services.AddSwaggerGen(c =>
+                {
+                    c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Invoices", Version = "v1" });
+                });
+                services.AddTransient<IClientService, ClientService>();
+                services.AddTransient(typeof(IMapperService<,>), typeof(MapperService<,>));
+                var connectionString = Configuration.GetConnectionString("Default");
+                services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+                var automapper = new MapperConfiguration(item => item.AddProfile(new MappingProfile()));
+                IMapper mapper = automapper.CreateMapper();
+                services.AddSingleton(mapper);
 
-            services.AddScoped<IProductService, ProductService>();
+                services.AddScoped<IProductService, ProductService>();
+            }
+            catch (Exception ex) { }
+
         }
         public void Configure(IApplicationBuilder app)
         {

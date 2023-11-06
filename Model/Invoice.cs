@@ -1,4 +1,6 @@
-﻿namespace Invoices.Model
+﻿using Invoices.Enums;
+
+namespace Invoices.Model
 {
     public class Invoice
     {
