@@ -1,6 +1,7 @@
 using Invoices.Dtos;
 using Invoices.Exceptions;
 using Invoices.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace Invoices.Services
 {
@@ -61,5 +62,24 @@ namespace Invoices.Services
             }
         }
 
+        public async Task<Product> GetProductByIdAsync(int id)
+        {
+            var dbProduct = await _dbContext.Products.FirstOrDefaultAsync(x => x.Id == id);
+            if(dbProduct == null)
+            {
+                throw new CustomException("No such Product in the database");
+            }
+            return dbProduct as Product;
+        }
+
+        public async Task<IEnumerable<Product>> GetProductListAsync()
+        {
+            var dbProducts = await _dbContext.Products.ToListAsync();
+            if(dbProducts == null)
+            {
+                throw new CustomException("Products table is empty");
+            }
+            return dbProducts;
+        }
     }
 }

@@ -33,7 +33,7 @@ public class ClientService : IClientService
             {
                 var newUserClient = new User()
                 {
-                    Id = newClient.ClientId,
+                    //Id = newClient.ClientId,
                     Name = newClient.Name,
                     BankNumber = newClient.BankNumber,
                 };
