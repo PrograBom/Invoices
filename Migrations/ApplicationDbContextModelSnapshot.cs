@@ -34,6 +34,29 @@ namespace Invoices.Migrations
                     b.ToTable("InvoiceItem");
                 });
 
+            modelBuilder.Entity("Invoices.Model.Address", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Country")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("ZipCode")
+                        .HasColumnType("longtext");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Address");
+                });
+
             modelBuilder.Entity("Invoices.Model.ClientDetail", b =>
                 {
                     b.Property<int>("Id")
@@ -127,22 +150,21 @@ namespace Invoices.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("Address")
-                        .HasColumnType("longtext");
+                    b.Property<int?>("AddressId")
+                        .HasColumnType("int");
 
                     b.Property<string>("BankNumber")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("ClientDetailId")
+                    b.Property<int?>("ClientDetailId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .HasColumnType("longtext");
 
-                    b.Property<int>("UserType")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("AddressId");
 
                     b.HasIndex("ClientDetailId");
 
@@ -188,11 +210,15 @@ namespace Invoices.Migrations
 
             modelBuilder.Entity("Invoices.Model.User", b =>
                 {
+                    b.HasOne("Invoices.Model.Address", "Address")
+                        .WithMany()
+                        .HasForeignKey("AddressId");
+
                     b.HasOne("Invoices.Model.ClientDetail", "ClientDetail")
                         .WithMany()
-                        .HasForeignKey("ClientDetailId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClientDetailId");
+
+                    b.Navigation("Address");
 
                     b.Navigation("ClientDetail");
                 });

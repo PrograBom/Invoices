@@ -12,12 +12,18 @@ public class ApplicationDbContext : DbContext
     public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
     //každá trieda má zápis v DbContext na tvorbu tabuľky
-    public DbSet<Item> Items { get; set; }
+    public DbSet<InvoiceLineItem> InvoiceLineItems { get; set; }
     public DbSet<Invoice> Invoices { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Product> Products { get; set; }
-    public DbSet<ClientDetail> ClientDetails { get; set; }
-
+    public DbSet<Address> Addresses { get; set; }
+    public DbSet<BankAccount> BankAccounts { get; set; }
+    public DbSet<Company> Companies { get; set; }
+    public DbSet<Customer> Customers { get; set; }
+    public DbSet<InvoiceTemplate> InvoiceTemplates { get; set; }
+    public DbSet<InvoiceTemplateItem> InvoiceTemplateItems { get; set; }
+    public DbSet<NumberSequence> NumberSequences { get; set; }
+    public DbSet<UserRole> UsersRoles { get; set; }
 
     //podmienky pre tvorbu tabuľky
     protected override void OnModelCreating(ModelBuilder modelBuilder)

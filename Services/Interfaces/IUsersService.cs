@@ -1,12 +1,12 @@
 ﻿using Invoices.Dtos;
+using Invoices.Model;
 
 namespace Invoices.Services.Interfaces
 {
-    public interface IClientService
+    public interface IUsersService
     {
         Task<ClientDto> GetById(string id);
-        Task<ResponseType> CreateClient(ClientCreateDto newClient);
-        Task<ResponseType> UpdateClient();
+        Task<User> SaveUserAsync(RequestUserDto newClient);
         Task<List<ClientDto>> GetAllClients();
     }
 }

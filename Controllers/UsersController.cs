@@ -8,43 +8,38 @@ namespace Invoices.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class ClientsController : ControllerBase
+    public class UsersController : ControllerBase
     {
-        private readonly IClientService _clientService;
+        private readonly IUsersService _userService;
 
-        public ClientsController(IClientService clientService)
+        public UsersController(IUsersService userService)
         {
-            this._clientService = clientService;
+            this._userService = userService;
         }
 
-        // GET: api/<ClientController>
         [HttpGet]
         public async Task<List<ClientDto>> GetAllClients()
         {
-            return await this._clientService.GetAllClients();
+            return await this._userService.GetAllClients();
         }
 
-        // GET api/<ClientController>/5
         [HttpGet("{id}")]
         public async Task<ClientDto> GetById(string id)
         {
-            return await this._clientService.GetById(id);
+            return await this._userService.GetById(id);
         }
 
-        // POST api/<ClientController>
         [HttpPost]
-        public async void Post([FromBody] ClientCreateDto newClient)
+        public async void Post([FromBody] RequestUserDto newUser)
         {
-            await this._clientService.CreateClient(newClient);
+            await this._userService.SaveUserAsync(newUser);
         }
 
-        // PUT api/<ClientController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<ClientController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

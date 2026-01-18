@@ -25,7 +25,7 @@ namespace Invoices
                 {
                     c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "Invoices", Version = "v1" });
                 });
-                services.AddTransient<IClientService, ClientService>();
+                services.AddTransient<IUsersService, UsersService>();
                 services.AddTransient(typeof(IMapperService<,>), typeof(MapperService<,>));
                 var connectionString = Configuration.GetConnectionString("Default");
                 services.AddDbContext<ApplicationDbContext>(options => options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
@@ -35,7 +35,7 @@ namespace Invoices
 
                 services.AddScoped<IProductService, ProductService>();
             }
-            catch (Exception ex) { }
+            catch (Exception) { }
 
         }
         public void Configure(IApplicationBuilder app)
